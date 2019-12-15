@@ -179,7 +179,7 @@ function configureAngularForVsCode() {
 
     "editor.tabSize": 2,
     "editor.rulers": [90],
-    "editor.autoIndent": true,
+    "editor.autoIndent": "full",
     "editor.cursorBlinking": "solid",
     "editor.formatOnType": false,
     "editor.formatOnPaste": false,
