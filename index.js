@@ -174,7 +174,7 @@ function configureAngularForVsCode() {
     ]
   }).save();
 
-  json(".vscode/settings.json", {
+  json(".vscode/settings.json").merge({
     "debug.openExplorerOnEnd": true,
 
     "editor.tabSize": 2,
@@ -220,8 +220,7 @@ function configureAngularForVsCode() {
 
   json(".vscode/launch.json", {
     version: "0.2.0",
-    configurations: [
-      {
+    configurations: [{
         name: "Debug npm start with Chrome",
         type: "chrome",
         request: "launch",
