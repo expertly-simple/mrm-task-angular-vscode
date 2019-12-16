@@ -157,119 +157,126 @@ function configureCommonNpmPackages() {
 }
 
 function configureAngularForVsCode() {
-  json(".vscode/extensions.json", {
-    recommendations: [
-      "johnpapa.angular-essentials",
-      "PKief.material-icon-theme",
-      "formulahendry.auto-close-tag",
-      "ms-azuretools.vscode-docker",
-      "eamodio.gitlens",
-      "WallabyJs.quokka-vscode",
-      "amatiasq.sort-imports",
-      "DSKWRK.vscode-generate-getter-setter",
-      "esbenp.prettier-vscode",
-      "HookyQR.beautify",
-      "expertly-simple.ng-evergreen",
-      "msjsdiag.debugger-for-edge"
-    ]
-  }).save();
+  json(".vscode/extensions.json")
+    .merge({
+      recommendations: [
+        "johnpapa.angular-essentials",
+        "PKief.material-icon-theme",
+        "formulahendry.auto-close-tag",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "WallabyJs.quokka-vscode",
+        "amatiasq.sort-imports",
+        "DSKWRK.vscode-generate-getter-setter",
+        "esbenp.prettier-vscode",
+        "HookyQR.beautify",
+        "expertly-simple.ng-evergreen",
+        "msjsdiag.debugger-for-edge"
+      ]
+    })
+    .save();
 
-  json(".vscode/settings.json").merge({
-    "debug.openExplorerOnEnd": true,
+  json(".vscode/settings.json")
+    .merge({
+      "debug.openExplorerOnEnd": true,
 
-    "editor.tabSize": 2,
-    "editor.rulers": [90],
-    "editor.autoIndent": "full",
-    "editor.cursorBlinking": "solid",
-    "editor.formatOnType": false,
-    "editor.formatOnPaste": false,
-    "editor.formatOnSave": true,
-    "editor.minimap.enabled": false,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": false,
-      "source.fixAll.tslint": true
-    },
-
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[html]": {
-      "editor.defaultFormatter": "HookyQR.beautify"
-    },
-
-    "explorer.openEditors.visible": 0,
-
-    "files.trimTrailingWhitespace": true,
-    "files.autoSave": "onFocusChange",
-
-    "git.confirmSync": false,
-    "git.enableSmartCommit": true,
-
-    "npm.enableScriptExplorer": true,
-
-    "typescript.tsdk": "node_modules/typescript/lib",
-
-    "workbench.iconTheme": "material-icon-theme",
-
-    "auto-close-tag.SublimeText3Mode": true,
-    "html.autoClosingTags": false,
-
-    "gitlens.menus": {
-      editorGroup: false
-    },
-    "ng-evergreen.upgradeChannel": "Latest"
-  }).save();
-
-  json(".vscode/launch.json", {
-    version: "0.2.0",
-    configurations: [{
-        name: "Debug npm start with Chrome",
-        type: "chrome",
-        request: "launch",
-        url: "http://localhost:5000/#",
-        webRoot: "${workspaceRoot}",
-        runtimeArgs: ["--remote-debugging-port=9222"],
-        sourceMaps: true,
-        preLaunchTask: "npm: start"
+      "editor.tabSize": 2,
+      "editor.rulers": [90],
+      "editor.autoIndent": "full",
+      "editor.cursorBlinking": "solid",
+      "editor.formatOnType": false,
+      "editor.formatOnPaste": false,
+      "editor.formatOnSave": true,
+      "editor.minimap.enabled": false,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": false,
+        "source.fixAll.tslint": true
       },
-      {
-        name: "Debug npm start with Edge",
-        type: "edge",
-        request: "launch",
-        version: "dev",
-        url: "http://localhost:5000/#",
-        webRoot: "${workspaceRoot}",
-        sourceMaps: true,
-        preLaunchTask: "npm: start"
+
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
       },
-      {
-        name: "Debug npm test with Chrome",
-        type: "chrome",
-        request: "launch",
-        url: "http://localhost:9876/debug.html",
-        webRoot: "${workspaceRoot}",
-        runtimeArgs: ["--remote-debugging-port=9222"],
-        sourceMaps: true,
-        preLaunchTask: "npm: test"
+
+      "explorer.openEditors.visible": 0,
+
+      "files.trimTrailingWhitespace": true,
+      "files.autoSave": "onFocusChange",
+
+      "git.confirmSync": false,
+      "git.enableSmartCommit": true,
+
+      "npm.enableScriptExplorer": true,
+
+      "typescript.tsdk": "node_modules/typescript/lib",
+
+      "workbench.iconTheme": "material-icon-theme",
+
+      "auto-close-tag.SublimeText3Mode": true,
+      "html.autoClosingTags": false,
+
+      "gitlens.menus": {
+        editorGroup: false
       },
-      {
-        name: "Debug npm test with Edge",
-        type: "edge",
-        request: "launch",
-        version: "dev",
-        url: "http://localhost:9876/debug.html",
-        webRoot: "${workspaceRoot}",
-        sourceMaps: true,
-        preLaunchTask: "npm: test"
-      },
-      {
-        name: "npm run e2e",
-        type: "node",
-        request: "launch",
-        program: "${workspaceRoot}/node_modules/protractor/bin/protractor",
-        protocol: "inspector",
-        args: ["${workspaceRoot}/protractor.conf.js"]
-      }
-    ]
-  }).save();
+      "ng-evergreen.upgradeChannel": "Latest"
+    })
+    .save();
+
+  json(".vscode/launch.json")
+    .merge({
+      version: "0.2.0",
+      configurations: [
+        {
+          name: "Debug npm start with Chrome",
+          type: "chrome",
+          request: "launch",
+          url: "http://localhost:5000/#",
+          webRoot: "${workspaceRoot}",
+          runtimeArgs: ["--remote-debugging-port=9222"],
+          sourceMaps: true,
+          preLaunchTask: "npm: start"
+        },
+        {
+          name: "Debug npm start with Edge",
+          type: "edge",
+          request: "launch",
+          version: "dev",
+          url: "http://localhost:5000/#",
+          webRoot: "${workspaceRoot}",
+          sourceMaps: true,
+          preLaunchTask: "npm: start"
+        },
+        {
+          name: "Debug npm test with Chrome",
+          type: "chrome",
+          request: "launch",
+          url: "http://localhost:9876/debug.html",
+          webRoot: "${workspaceRoot}",
+          runtimeArgs: ["--remote-debugging-port=9222"],
+          sourceMaps: true,
+          preLaunchTask: "npm: test"
+        },
+        {
+          name: "Debug npm test with Edge",
+          type: "edge",
+          request: "launch",
+          version: "dev",
+          url: "http://localhost:9876/debug.html",
+          webRoot: "${workspaceRoot}",
+          sourceMaps: true,
+          preLaunchTask: "npm: test"
+        },
+        {
+          name: "npm run e2e",
+          type: "node",
+          request: "launch",
+          program: "${workspaceRoot}/node_modules/protractor/bin/protractor",
+          protocol: "inspector",
+          args: ["${workspaceRoot}/protractor.conf.js"]
+        }
+      ]
+    })
+    .save();
 }
 
 task.description = "Configures VS Code for Angular projects";
