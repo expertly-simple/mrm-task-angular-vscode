@@ -97,14 +97,14 @@ function configureNpmScripts() {
   pkg
     .setScript(
       "style",
-      'import-sort -l "**/*.ts" && prettier --check "**/*.{*css,ts}"'
+      'import-sort -l "**/{src,tests,e2e}/*.ts" && prettier --check "**/{src,tests,e2e}/*.{*css,ts}"'
     )
     .save();
 
   pkg
     .setScript(
       "style:fix",
-      'import-sort --write "**/*.ts" && prettier --write "**/*.{*css,ts}" && js-beautify "src/**/*.html"'
+      'import-sort --write "**/{src,tests,e2e}/*.ts" && prettier --write "**/{src,tests,e2e}/*.{*css,ts}" && js-beautify "src/**/*.html"'
     )
     .save();
 
