@@ -93,6 +93,10 @@ function configurePrettier() {
 
     addArrayProperty("tslint.json", "extends", "tslint-config-prettier");
     addArrayProperty("tslint.json", "extends", "tslint-plugin-prettier");
+
+    json("tslint.json")
+      .set("rules.prettier", true)
+      .save();
   }
 }
 
