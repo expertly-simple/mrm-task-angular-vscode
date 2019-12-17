@@ -37,8 +37,8 @@ function configureTsLint() {
 function addArrayProperty(fileName, propertyName, element) {
   let extendsArray = json(fileName).get(propertyName);
 
-  if(!Array.isArray(extendsArray)) {
-    extendsArray = [extendsArray]
+  if (!Array.isArray(extendsArray)) {
+    extendsArray = [extendsArray];
   }
 
   if (!extendsArray.includes(element)) {
@@ -102,14 +102,14 @@ function configureNpmScripts() {
   pkg
     .setScript(
       "style",
-      'import-sort -l "**/{src,tests,e2e}/*.ts" && prettier --check "**/{src,tests,e2e}/*.{*css,ts}"'
+      'import-sort -l "{src,tests,e2e}/**/*.ts" && prettier --check "{src,tests,e2e}/**/*.{*css,ts}"'
     )
     .save();
 
   pkg
     .setScript(
       "style:fix",
-      'import-sort --write "**/{src,tests,e2e}/*.ts" && prettier --write "**/{src,tests,e2e}/*.{*css,ts}" && js-beautify "src/**/*.html"'
+      'import-sort --write "{src,tests,e2e}/**/*.ts" && prettier --write "{src,tests,e2e}/**/*.{*css,ts}" && js-beautify "src/**/*.html"'
     )
     .save();
 
