@@ -28,9 +28,9 @@ function configureTsLint() {
 
   json("tslint.json")
     .set("rules.no-unused-declaration", true)
-    .set("max-line-length", [true, 90])
-    .set("quotemark", [true, "single", "avoid-escape"])
-    .set("semicolon", [true, "never"])
+    .set("rules.max-line-length", [true, 90])
+    .set("rules.quotemark", [true, "single", "avoid-escape"])
+    .set("rules.semicolon", [true, "never"])
     .save();
 }
 
