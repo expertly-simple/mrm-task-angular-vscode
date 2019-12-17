@@ -1,6 +1,6 @@
 {
   "name": "mrm-task-angular-vscode",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "MRM task to configure VS Code and Angular project with an optimized development experience",
   "main": "index.js",
   "scripts": {
