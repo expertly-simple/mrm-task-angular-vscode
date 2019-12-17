@@ -21,7 +21,7 @@ function task(config) {
 }
 
 function configureTsLint() {
-  const tslintPackages = ["tslint", "tslint-etc"];
+  const tslintPackages = [{ tslint: "latest" }, { "tslint-etc": "latest" }];
   install(tslintPackages);
 
   addArrayProperty("tslint.json", "extends", "tslint-etc");
@@ -49,7 +49,7 @@ function addArrayProperty(fileName, propertyName, element) {
 }
 
 function configureJsBeautify() {
-  const beautifyPackages = ["js-beautify"];
+  const beautifyPackages = [{ "js-beautify": "latest" }];
   install(beautifyPackages);
 
   json(".jsbeautifyrc")
@@ -65,7 +65,7 @@ function configureJsBeautify() {
 }
 
 function configurePrettier() {
-  const prettierPackages = ["prettier"];
+  const prettierPackages = [{ prettier: "latest" }];
   install(prettierPackages);
 
   lines(".prettierignore", ["**/*.html"]).save();
@@ -86,8 +86,8 @@ function configurePrettier() {
 
   if (pkg.get("devDependencies.tslint")) {
     const prettierTslintPackages = [
-      "tslint-config-prettier",
-      "tslint-plugin-prettier"
+      { "tslint-config-prettier": "latest" },
+      { "tslint-plugin-prettier": "latest" }
     ];
     install(prettierTslintPackages);
 
@@ -134,10 +134,10 @@ function configureNpmScripts() {
 
 function configureImportSort() {
   const importSortPackages = [
-    "import-sort",
-    "import-sort-cli",
-    "import-sort-parser-typescript",
-    "import-sort-style-module"
+    { "import-sort": "latest" },
+    { "import-sort-cli": "latest" },
+    { "import-sort-parser-typescript": "latest" },
+    { "import-sort-style-module": "latest" }
   ];
 
   install(importSortPackages);
@@ -156,12 +156,16 @@ function configureImportSort() {
 }
 
 function configureAngular() {
-  const angularDeps = ["angular-unit-test-helper"];
+  const angularDeps = [{ "angular-unit-test-helper": "latest" }];
   install(angularDeps);
 }
 
 function configureCommonNpmPackages() {
-  const commonNpm = ["cross-conf-env", "npm-run-all", "dev-norms"];
+  const commonNpm = [
+    { "cross-conf-env": "latest" },
+    { "npm-run-all": "latest" },
+    { "dev-norms": "latest" }
+  ];
   install(commonNpm);
 }
 
