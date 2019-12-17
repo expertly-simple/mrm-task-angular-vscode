@@ -21,7 +21,7 @@ function task(config) {
 }
 
 function configureTsLint() {
-  const tslintPackages = [{ tslint: "latest" }, { "tslint-etc": "latest" }];
+  const tslintPackages = ["tslint", "tslint-etc"];
   install(tslintPackages);
 
   addArrayProperty("tslint.json", "extends", "tslint-etc");
@@ -49,7 +49,7 @@ function addArrayProperty(fileName, propertyName, element) {
 }
 
 function configureJsBeautify() {
-  const beautifyPackages = [{ "js-beautify": "latest" }];
+  const beautifyPackages = ["js-beautify"];
   install(beautifyPackages);
 
   json(".jsbeautifyrc")
@@ -65,7 +65,7 @@ function configureJsBeautify() {
 }
 
 function configurePrettier() {
-  const prettierPackages = [{ prettier: "latest" }];
+  const prettierPackages = ["prettier"];
   install(prettierPackages);
 
   lines(".prettierignore", ["**/*.html"]).save();
@@ -86,8 +86,8 @@ function configurePrettier() {
 
   if (pkg.get("devDependencies.tslint")) {
     const prettierTslintPackages = [
-      { "tslint-config-prettier": "latest" },
-      { "tslint-plugin-prettier": "latest" }
+      "tslint-config-prettier",
+      "tslint-plugin-prettier"
     ];
     install(prettierTslintPackages);
 
@@ -134,10 +134,10 @@ function configureNpmScripts() {
 
 function configureImportSort() {
   const importSortPackages = [
-    { "import-sort": "latest" },
-    { "import-sort-cli": "latest" },
-    { "import-sort-parser-typescript": "latest" },
-    { "import-sort-style-module": "latest" }
+    "import-sort",
+    "import-sort-cli",
+    "import-sort-parser-typescript",
+    "import-sort-style-module"
   ];
 
   install(importSortPackages);
@@ -156,16 +156,12 @@ function configureImportSort() {
 }
 
 function configureAngular() {
-  const angularDeps = [{ "angular-unit-test-helper": "latest" }];
+  const angularDeps = ["angular-unit-test-helper"];
   install(angularDeps);
 }
 
 function configureCommonNpmPackages() {
-  const commonNpm = [
-    { "cross-conf-env": "latest" },
-    { "npm-run-all": "latest" },
-    { "dev-norms": "latest" }
-  ];
+  const commonNpm = ["cross-conf-env", "npm-run-all", "dev-norms"];
   install(commonNpm);
 }
 
