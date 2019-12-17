@@ -35,7 +35,12 @@ function configureTsLint() {
 }
 
 function addArrayProperty(fileName, propertyName, element) {
-  const extendsArray = json(fileName).get(propertyName);
+  let extendsArray = json(fileName).get(propertyName);
+
+  if(!Array.isArray(extendsArray)) {
+    extendsArray = [extendsArray]
+  }
+
   if (!extendsArray.includes(element)) {
     json(fileName)
       .set(propertyName, extendsArray.concat(element))
