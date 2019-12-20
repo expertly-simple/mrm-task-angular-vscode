@@ -1,5 +1,5 @@
 # mrm-task-angular-vscode
-MRM task to configure VS Code and Angular project with an optimized development experience
+MRM task to configure VS Code and Angular projects with an optimized development experience
 
 ## How to Use
 ```
