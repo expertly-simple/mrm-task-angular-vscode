@@ -1,142 +1,142 @@
+import { install, json, packageJson } from 'mrm-core'
+
+import { BaseVsCodeExtensions } from '../shared/baseVsCodeExtensions'
+import { BaseVsCodeSettings } from '../shared/baseVsCodeSettings'
 import {
   configureCommonNpmPackages,
   configureImportSort,
   configureInitEnv,
   configurePRTemplate,
   configurePrettier,
-  configureTsLint
-} from "../shared/commonTasks";
-import { install, json, packageJson } from "mrm-core";
-
-import { BaseVsCodeExtensions } from '../shared/baseVsCodeExtensions'
-import { BaseVsCodeSettings } from '../shared/baseVsCodeSettings'
-import { setScripts } from "../shared/helpers";
+  configureTsLint,
+} from '../shared/commonTasks'
+import { setScripts } from '../shared/helpers'
 
 function task() {
-  configureCommonNpmPackages();
-  configureNpmScripts();
-  configureImportSort();
-  configureTsLint();
-  configurePrettier();
-  configureJsBeautify();
-  configureAngular();
-  configureVsCodeForAngular();
-  configureInitEnv();
-  configurePRTemplate();
+  configureCommonNpmPackages()
+  configureNpmScripts()
+  configureImportSort()
+  configureTsLint()
+  configurePrettier()
+  configureJsBeautify()
+  configureAngular()
+  configureVsCodeForAngular()
+  configureInitEnv()
+  configurePRTemplate()
 }
 
 function configureJsBeautify() {
-  const beautifyPackages = ["js-beautify"];
-  install(beautifyPackages);
+  const beautifyPackages = ['js-beautify']
+  install(beautifyPackages)
 
-  json(".jsbeautifyrc")
+  json('.jsbeautifyrc')
     .merge({
       indent_size: 2,
       wrap_line_length: 90,
       end_with_newline: true,
       language: {
-        html: ["html"]
-      }
+        html: ['html'],
+      },
     })
-    .save();
+    .save()
 }
 
 function configureNpmScripts() {
-  const pkg = packageJson();
+  const pkg = packageJson()
 
   setScripts(pkg, {
     style:
       'import-sort -l "{src,tests,e2e}/**/*.ts" && prettier --check "{src,tests,e2e}/**/*.{*css,ts}"',
-    "style:fix":
+    'style:fix':
       'import-sort --write "{src,tests,e2e}/**/*.ts" && prettier --write "{src,tests,e2e}/**/*.{*css,ts}" && js-beautify "src/**/*.html"',
     lint: 'tslint --config tslint.json --project . -e "**/{test,polyfills}.ts"',
-    "lint:fix":
-      'tslint --config tslint.json --fix --project . -e "**/{test,polyfills}.ts"'
-  });
+    'lint:fix':
+      'tslint --config tslint.json --fix --project . -e "**/{test,polyfills}.ts"',
+  })
 }
 
 function configureAngular() {
-  const angularDeps = ["angular-unit-test-helper"];
-  install(angularDeps);
+  const angularDeps = ['angular-unit-test-helper']
+  install(angularDeps)
 }
 
 function configureVsCodeForAngular() {
-  json(".vscode/extensions.json")
+  json('.vscode/extensions.json')
     .merge({
       recommendations: BaseVsCodeExtensions.concat([
-        "expertly-simple.ng-evergreen",
-        "formulahendry.auto-close-tag",
-        "HookyQR.beautify",
-        "johnpapa.angular-essentials",
-        "msjsdiag.debugger-for-edge"
-      ])
+        'expertly-simple.ng-evergreen',
+        'formulahendry.auto-close-tag',
+        'HookyQR.beautify',
+        'johnpapa.angular-essentials',
+        'msjsdiag.debugger-for-edge',
+      ]),
     })
-    .save();
+    .save()
 
-  json(".vscode/settings.json")
+  json('.vscode/settings.json')
     .merge(
       Object.assign(BaseVsCodeSettings, {
-        "ng-evergreen.upgradeChannel": "Latest"
+        'ng-evergreen.upgradeChannel': 'Latest',
       })
     )
-    .save();
+    .save()
 
-  json(".vscode/launch.json")
+  json('.vscode/launch.json')
     .merge({
-      version: "0.2.0",
+      version: '0.2.0',
       configurations: [
         {
-          name: "Debug npm start with Chrome",
-          type: "chrome",
-          request: "launch",
-          url: "http://localhost:5000/#",
-          webRoot: "${workspaceRoot}",
-          runtimeArgs: ["--remote-debugging-port=9222"],
+          name: 'Debug npm start with Chrome',
+          type: 'chrome',
+          request: 'launch',
+          url: 'http://localhost:5000/#',
+          webRoot: '${workspaceRoot}',
+          runtimeArgs: ['--remote-debugging-port=9222'],
           sourceMaps: true,
-          preLaunchTask: "npm: start"
+          preLaunchTask: 'npm: start',
         },
         {
-          name: "Debug npm start with Edge",
-          type: "edge",
-          request: "launch",
-          version: "dev",
-          url: "http://localhost:5000/#",
-          webRoot: "${workspaceRoot}",
+          name: 'Debug npm start with Edge',
+          type: 'edge',
+          request: 'launch',
+          version: 'dev',
+          url: 'http://localhost:5000/#',
+          webRoot: '${workspaceRoot}',
           sourceMaps: true,
-          preLaunchTask: "npm: start"
+          preLaunchTask: 'npm: start',
         },
         {
-          name: "Debug npm test with Chrome",
-          type: "chrome",
-          request: "launch",
-          url: "http://localhost:9876/debug.html",
-          webRoot: "${workspaceRoot}",
-          runtimeArgs: ["--remote-debugging-port=9222"],
+          name: 'Debug npm test with Chrome',
+          type: 'chrome',
+          request: 'launch',
+          url: 'http://localhost:9876/debug.html',
+          webRoot: '${workspaceRoot}',
+          runtimeArgs: ['--remote-debugging-port=9222'],
           sourceMaps: true,
-          preLaunchTask: "npm: test"
+          preLaunchTask: 'npm: test',
         },
         {
-          name: "Debug npm test with Edge",
-          type: "edge",
-          request: "launch",
-          version: "dev",
-          url: "http://localhost:9876/debug.html",
-          webRoot: "${workspaceRoot}",
+          name: 'Debug npm test with Edge',
+          type: 'edge',
+          request: 'launch',
+          version: 'dev',
+          url: 'http://localhost:9876/debug.html',
+          webRoot: '${workspaceRoot}',
           sourceMaps: true,
-          preLaunchTask: "npm: test"
+          preLaunchTask: 'npm: test',
         },
         {
-          name: "npm run e2e",
-          type: "node",
-          request: "launch",
-          program: "${workspaceRoot}/node_modules/protractor/bin/protractor",
-          protocol: "inspector",
-          args: ["${workspaceRoot}/protractor.conf.js"]
-        }
-      ]
+          name: 'npm run e2e',
+          type: 'node',
+          request: 'launch',
+          program: '${workspaceRoot}/node_modules/protractor/bin/protractor',
+          protocol: 'inspector',
+          args: ['${workspaceRoot}/protractor.conf.js'],
+        },
+      ],
     })
-    .save();
+    .save()
 }
 
-task.description = "Configures VS Code for Angular projects";
-module.exports = task;
+task.description = 'Configures VS Code for Angular projects'
+module.exports = task
