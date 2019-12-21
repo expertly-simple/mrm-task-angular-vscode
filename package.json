@@ -2,9 +2,19 @@
   "name": "mrm-task-angular-vscode",
   "version": "1.4.0",
   "description": "MRM task to configure VS Code and Angular project with an optimized development experience",
-  "main": "index.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "config": {
+    "mrmSharedUrl": "https://github.com/expertly-simple/mrm-shared.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "shared:clean": "cross-conf-env rimraf shared && git rm -r --cached shared",
+    "shared:init": "cross-conf-env git submodule add $npm_package_config_mrmSharedUrl shared",
+    "postshared:init": "git submodule status shared",
+    "modules:init": "git submodule update --init --recursive",
+    "modules:update": "git submodule update --recursive --remote"
   },
   "repository": {
     "type": "git",
@@ -24,5 +34,11 @@
   "homepage": "https://github.com/expertly-simple/mrm-task-angular-vscode#readme",
   "dependencies": {
     "mrm-core": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "cross-conf-env": "^1.1.2",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.3"
   }
 }

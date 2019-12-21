@@ -10,11 +10,14 @@ npx mrm angular-vscode
 ## Details
 Configures:
 - common Npm packages: [cross-conf-env](https://www.npmjs.com/package/cross-conf-env), [npm-run-all](npm-run-all
-), [dev-norms](https://www.npmjs.com/package/dev-norms)
-- Npm Scripts for Styling and Linting
+), [dev-norms](https://www.npmjs.com/package/dev-norms), [rimraf](https://www.npmjs.com/package/rimraf)
+- Npm scripts for styling, and linting
 - ImportSort
 - TsLint
 - Prettier
 - JsBeautify
+- Jasmine and nyc
+- Example.env
+- PR template
 - Angular libraries: [angular-unit-test-helper](https://www.npmjs.com/package/angular-unit-test-helper)
 - VsCode extensions, settings, and launch for debugging
