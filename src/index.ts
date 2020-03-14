@@ -46,9 +46,9 @@ function configureNpmScripts() {
 
   setScripts(pkg, {
     style:
-      'import-sort -l "{src,tests,e2e}/**/*.ts" && prettier --check "{src,tests,e2e}/**/*.{*css,ts}"',
+      'import-sort -l "**/{src,tests,e2e}/**/*.ts" && prettier --check "**/{src,tests,e2e}/**/*.{*css,ts}"',
     'style:fix':
-      'import-sort --write "{src,tests,e2e}/**/*.ts" && prettier --write "{src,tests,e2e}/**/*.{*css,ts}" && js-beautify "src/**/*.html"',
+      'import-sort --write "**/{src,tests,e2e}/**/*.ts" && prettier --write "**/{src,tests,e2e}/**/*.{*css,ts}" && js-beautify "**/src/**/*.html"',
     lint: 'tslint --config tslint.json --project . -e "**/{test,polyfills}.ts"',
     'lint:fix':
       'tslint --config tslint.json --fix --project . -e "**/{test,polyfills}.ts"',
