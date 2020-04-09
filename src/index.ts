@@ -50,7 +50,7 @@ function configureNpmScripts() {
     'style:fix':
       'import-sort --write "**/{src,tests,e2e}/**/*.ts" && prettier --write "**/{src,tests,e2e}/**/*.{*css,ts}" && js-beautify "**/src/**/*.html"',
     lint: 'run-p lint:ts lint:tsc',
-    'lint:fix': 'run-p lint:ts:fix lint:tsc',
+    'lint:fix': 'run-s lint:ts:fix lint:tsc',
     'lint:ts': 'tslint --config tslint.json --project . -e "**/{test,polyfills}.ts"',
     'lint:ts:fix':
       'tslint --config tslint.json --fix --project . -e "**/{test,polyfills}.ts"',
